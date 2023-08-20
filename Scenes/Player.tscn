@@ -243,34 +243,34 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0.0333333 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
+"update": 0,
 "values": [ true ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
+tracks/2/type = "value"
+tracks/2/path = NodePath("Head/Camera/RevolverBullet:draw_pass_1:material:emission_energy")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
+"times": PoolRealArray( 0, 0.0333333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 16.0 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ 0.05, 0.2 ],
 "method": "hitstop"
 } ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Head/Camera/RevolverBullet:draw_pass_1:material:emission_energy")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.0333333 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 1.0, 16.0 ]
 }
 
 [sub_resource type="Animation" id=15]
@@ -291,36 +291,41 @@ tracks/0/keys = {
 "method": "fire"
 } ]
 }
-tracks/1/type = "transform"
-tracks/1/path = NodePath("Head/Camera/Hand/Revolver")
+tracks/1/type = "value"
+tracks/1/path = NodePath("Head/Camera/Hand/Revolver/Cylinder:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/keys = PoolRealArray(  )
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ true, false, true ]
+}
 tracks/2/type = "value"
-tracks/2/path = NodePath("Head/Camera/Hand/Revolver:rotation_degrees")
+tracks/2/path = NodePath("Head/Camera/Hand/Revolver/Cylinder:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.051, 0.233498 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.0333333, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( 45, 0, 0 ), Vector3( 0, 0, 0 ) ]
+"values": [ Vector3( -0.124733, -0.124733, -0.124733 ), Vector3( -0.125, 0, -0.125 ), Vector3( -0.125, 0, -0.125 ), Vector3( -0.125, -0.125, -0.125 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Head/Camera/Hand/Revolver/Cylinder:rotation_degrees")
+tracks/3/path = NodePath("Head/Camera/RevolverBullet:emitting")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
-tracks/3/enabled = false
+tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.0666667, 0.166667, 0.233333, 0.366667, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0.0166667 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( -90, 0, 0 ), Vector3( -90, -180, 0 ), Vector3( -90, -270, 0 ), Vector3( -90, -380, 0 ), Vector3( -90, -360, 0 ) ]
+"values": [ true ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Head/Camera/Hand/Revolver/Shell:emitting")
@@ -331,45 +336,40 @@ tracks/4/enabled = true
 tracks/4/keys = {
 "times": PoolRealArray( 0.1 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
+"update": 0,
 "values": [ true ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Head/Camera/RevolverBullet:emitting")
+tracks/5/path = NodePath("Head/Camera/Hand/Revolver/Cylinder:rotation_degrees")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.0166667 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
+"times": PoolRealArray( 0.0666667, 0.166667, 0.233333, 0.366667, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -90, 0, 0 ), Vector3( -90, -180, 0 ), Vector3( -90, -270, 0 ), Vector3( -90, -380, 0 ), Vector3( -90, -360, 0 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Head/Camera/Hand/Revolver/Cylinder:scale")
+tracks/6/path = NodePath("Head/Camera/Hand/Revolver:rotation_degrees")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.2, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.051, 0.233498 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( -0.124733, -0.124733, -0.124733 ), Vector3( -0.125, 0, -0.125 ), Vector3( -0.125, 0, -0.125 ), Vector3( -0.125, -0.125, -0.125 ) ]
+"values": [ Vector3( 0, 0, 0 ), Vector3( 45, 0, 0 ), Vector3( 0, 0, 0 ) ]
 }
-tracks/7/type = "value"
-tracks/7/path = NodePath("Head/Camera/Hand/Revolver/Cylinder:visible")
+tracks/7/type = "transform"
+tracks/7/path = NodePath("Head/Camera/Hand/Revolver")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true ]
-}
+tracks/7/keys = PoolRealArray(  )
 
 [sub_resource type="Animation" id=16]
 resource_name = "RESET"
@@ -382,11 +382,11 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
+"update": 0,
 "values": [ false ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Revolver SFX:playing")
+tracks/1/path = NodePath("Head/Camera/RevolverBullet:draw_pass_1:material:emission_energy")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -395,10 +395,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ false ]
+"values": [ 1.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Head/Camera/RevolverBullet:draw_pass_1:material:emission_energy")
+tracks/2/path = NodePath("Revolver SFX:playing")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -407,7 +407,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 1.0 ]
+"values": [ false ]
 }
 
 [sub_resource type="BoxShape" id=28]

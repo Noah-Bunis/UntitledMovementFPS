@@ -143,9 +143,9 @@ func hitstop(timeScale, duration):
 
 func camera_fov():
 	if wall_running:
-		target_fov = 86
+		target_fov = 90
 	elif sliding:
-		target_fov = 81
+		target_fov = 85
 	else:
 		target_fov = 80
 	
@@ -243,21 +243,16 @@ func dash_jump():
 	boost_count -= 1
 	HUD.boosts -= 1
 	if not dashing:
-		jump +=10
-	jump += 6
+		jump +=15
+	jump += 15
 	speed += 16
 	
 func wall_jump():
 	wall_kick = true
 	wall_jumps -=1
 	snap = Vector3.ZERO
-	if dashing:
-		gravity_vec = Vector3.UP * jump*1.2
-	else:
-		gravity_vec = Vector3.UP * jump *5
+	gravity_vec = Vector3.UP * jump * (head.rotation.x * 3)
 	jump = DEFAULT_JUMP
-	if boost_count > 0:
-		dash_jump()
 	wall_normal = get_slide_collision(0)
 	direction = wall_normal.normal * speed/2
 	yield(get_tree().create_timer(0.1), "timeout")
