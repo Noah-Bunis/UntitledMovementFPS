@@ -1,0 +1,404 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Assets/fonts/_bitmap_font____romulus_by_pix3m-d6aokem.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://addons/dialogic/Editor/Events/styles/ResourceMenuPanelBackground.tres" type="StyleBox" id=2]
+[ext_resource path="res://Scenes/Keybinds.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Options.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/fonts/main font.tres" type="DynamicFont" id=5]
+[ext_resource path="res://addons/dialogic/Example Assets/backgrounds/GlossaryBackground.tres" type="StyleBox" id=6]
+[ext_resource path="res://addons/dialogic/Editor/Events/styles/SimpleButtonHover.tres" type="StyleBox" id=7]
+[ext_resource path="res://addons/dialogic/Editor/Theme/MainTheme.tres" type="Theme" id=8]
+[ext_resource path="res://Assets/OptionAColor.tres" type="StyleBox" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+size = 128
+outline_size = 1
+outline_color = Color( 0.431373, 0.431373, 0.431373, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.2, 0.160784, 0.160784, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.160784, 0.2, 0.160784, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.2, 0.160784, 0.2, 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 128
+outline_size = 1
+outline_color = Color( 0.431373, 0.431373, 0.431373, 1 )
+font_data = ExtResource( 1 )
+
+[node name="InputMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+Options = ExtResource( 4 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.254902, 0.282353, 0.356863, 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 1920.0
+margin_bottom = 130.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_fonts/font = SubResource( 1 )
+custom_styles/normal = ExtResource( 2 )
+text = "Keybinds"
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 134.0
+margin_right = 1920.0
+margin_bottom = 946.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 20
+
+[node name="BindRow 0" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_right = 1920.0
+margin_bottom = 63.0
+rect_pivot_offset = Vector2( -752, -534 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 8 )
+custom_constants/separation = 20
+
+[node name="Move Forward" type="Label" parent="VBoxContainer/VBoxContainer/BindRow 0"]
+margin_right = 950.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 5 )
+custom_styles/normal = ExtResource( 9 )
+text = "  Move Forward"
+valign = 1
+
+[node name="Dropdown 0" type="OptionButton" parent="VBoxContainer/VBoxContainer/BindRow 0"]
+margin_left = 970.0
+margin_right = 1920.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
+custom_styles/focus = ExtResource( 7 )
+custom_styles/normal = ExtResource( 6 )
+text = "W"
+align = 1
+
+[node name="BindRow 1" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 83.0
+margin_right = 1920.0
+margin_bottom = 146.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 8 )
+custom_constants/separation = 20
+
+[node name="Move Backward" type="Label" parent="VBoxContainer/VBoxContainer/BindRow 1"]
+margin_right = 950.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 5 )
+custom_styles/normal = ExtResource( 9 )
+text = "  Move Backward"
+valign = 1
+
+[node name="Dropdown 1" type="OptionButton" parent="VBoxContainer/VBoxContainer/BindRow 1"]
+margin_left = 970.0
+margin_right = 1920.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
+custom_styles/focus = ExtResource( 7 )
+custom_styles/normal = ExtResource( 6 )
+text = "S"
+align = 1
+
+[node name="BindRow 2" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 166.0
+margin_right = 1920.0
+margin_bottom = 229.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 8 )
+custom_constants/separation = 20
+
+[node name="Move Left" type="Label" parent="VBoxContainer/VBoxContainer/BindRow 2"]
+margin_right = 950.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 5 )
+custom_styles/normal = ExtResource( 9 )
+text = "  Move Left"
+valign = 1
+
+[node name="Dropdown 2" type="OptionButton" parent="VBoxContainer/VBoxContainer/BindRow 2"]
+margin_left = 970.0
+margin_right = 1920.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
+custom_styles/focus = ExtResource( 7 )
+custom_styles/normal = ExtResource( 6 )
+text = "A"
+align = 1
+
+[node name="BindRow 3" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 249.0
+margin_right = 1920.0
+margin_bottom = 312.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 8 )
+custom_constants/separation = 20
+
+[node name="Move Right" type="Label" parent="VBoxContainer/VBoxContainer/BindRow 3"]
+margin_right = 950.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 5 )
+custom_styles/normal = ExtResource( 9 )
+text = "  Move Right"
+valign = 1
+
+[node name="Dropdown 3" type="OptionButton" parent="VBoxContainer/VBoxContainer/BindRow 3"]
+margin_left = 970.0
+margin_right = 1920.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
+custom_styles/focus = ExtResource( 7 )
+custom_styles/normal = ExtResource( 6 )
+text = "D"
+align = 1
+
+[node name="BindRow 4" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 332.0
+margin_right = 1920.0
+margin_bottom = 396.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 8 )
+custom_constants/separation = 20
+
+[node name="Jump" type="Label" parent="VBoxContainer/VBoxContainer/BindRow 4"]
+margin_right = 950.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 5 )
+custom_styles/normal = ExtResource( 9 )
+text = "  Jump"
+valign = 1
+
+[node name="Dropdown 4" type="OptionButton" parent="VBoxContainer/VBoxContainer/BindRow 4"]
+margin_left = 970.0
+margin_right = 1920.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
+custom_styles/focus = ExtResource( 7 )
+custom_styles/normal = ExtResource( 6 )
+text = "Space"
+align = 1
+
+[node name="BindRow 5" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 416.0
+margin_right = 1920.0
+margin_bottom = 479.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 8 )
+custom_constants/separation = 20
+
+[node name="Slide" type="Label" parent="VBoxContainer/VBoxContainer/BindRow 5"]
+margin_right = 950.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 5 )
+custom_styles/normal = ExtResource( 9 )
+text = "  Slide"
+valign = 1
+
+[node name="Dropdown 5" type="OptionButton" parent="VBoxContainer/VBoxContainer/BindRow 5"]
+margin_left = 970.0
+margin_right = 1920.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
+custom_styles/focus = ExtResource( 7 )
+custom_styles/normal = ExtResource( 6 )
+text = "Left Shift"
+align = 1
+
+[node name="BindRow 6" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 499.0
+margin_right = 1920.0
+margin_bottom = 562.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 8 )
+custom_constants/separation = 20
+
+[node name="Fire" type="Label" parent="VBoxContainer/VBoxContainer/BindRow 6"]
+margin_right = 950.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 5 )
+custom_styles/normal = SubResource( 3 )
+text = "  Shoot"
+valign = 1
+
+[node name="Dropdown 6" type="OptionButton" parent="VBoxContainer/VBoxContainer/BindRow 6"]
+margin_left = 970.0
+margin_right = 1920.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
+custom_styles/focus = ExtResource( 7 )
+custom_styles/normal = ExtResource( 6 )
+text = "Left Click"
+align = 1
+
+[node name="BindRow 7" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 582.0
+margin_right = 1920.0
+margin_bottom = 645.0
+rect_pivot_offset = Vector2( -752, -534 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 8 )
+custom_constants/separation = 20
+
+[node name="Restart Level" type="Label" parent="VBoxContainer/VBoxContainer/BindRow 7"]
+margin_right = 950.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 5 )
+custom_styles/normal = SubResource( 4 )
+text = "  Restart Level"
+valign = 1
+
+[node name="Dropdown 7" type="OptionButton" parent="VBoxContainer/VBoxContainer/BindRow 7"]
+margin_left = 970.0
+margin_right = 1920.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
+custom_styles/focus = ExtResource( 7 )
+custom_styles/normal = ExtResource( 6 )
+text = "F"
+align = 1
+
+[node name="BindRow 8" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 665.0
+margin_right = 1920.0
+margin_bottom = 728.0
+rect_pivot_offset = Vector2( -752, -534 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 8 )
+custom_constants/separation = 20
+
+[node name="Change Item (Cheats Only)" type="Label" parent="VBoxContainer/VBoxContainer/BindRow 8"]
+margin_right = 950.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 5 )
+custom_styles/normal = SubResource( 5 )
+text = "  Change Item (Cheats Only)"
+valign = 1
+
+[node name="Dropdown 8" type="OptionButton" parent="VBoxContainer/VBoxContainer/BindRow 8"]
+margin_left = 970.0
+margin_right = 1920.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
+custom_styles/focus = ExtResource( 7 )
+custom_styles/normal = ExtResource( 6 )
+text = "G"
+align = 1
+
+[node name="BindRow 10" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 748.0
+margin_right = 1920.0
+margin_bottom = 812.0
+rect_pivot_offset = Vector2( -752, -534 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 8 )
+custom_constants/separation = 20
+
+[node name="Exit To Menu" type="Label" parent="VBoxContainer/VBoxContainer/BindRow 10"]
+margin_right = 950.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 5 )
+custom_styles/normal = ExtResource( 6 )
+text = "  Exit To Menu"
+valign = 1
+
+[node name="Dropdown 10" type="OptionButton" parent="VBoxContainer/VBoxContainer/BindRow 10"]
+margin_left = 970.0
+margin_right = 1920.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
+custom_styles/focus = ExtResource( 7 )
+custom_styles/normal = ExtResource( 6 )
+text = "Escape"
+align = 1
+
+[node name="Back" type="Button" parent="VBoxContainer"]
+margin_top = 950.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 9
+custom_fonts/font = SubResource( 2 )
+custom_styles/normal = ExtResource( 2 )
+text = "Back"
+
+[connection signal="item_selected" from="VBoxContainer/VBoxContainer/BindRow 0/Dropdown 0" to="." method="_on_Dropdown_0_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/VBoxContainer/BindRow 1/Dropdown 1" to="." method="_on_Dropdown_1_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/VBoxContainer/BindRow 2/Dropdown 2" to="." method="_on_Dropdown_2_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/VBoxContainer/BindRow 3/Dropdown 3" to="." method="_on_Dropdown_3_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/VBoxContainer/BindRow 4/Dropdown 4" to="." method="_on_Dropdown_4_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/VBoxContainer/BindRow 5/Dropdown 5" to="." method="_on_Dropdown_5_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/VBoxContainer/BindRow 6/Dropdown 6" to="." method="_on_Dropdown_6_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/VBoxContainer/BindRow 7/Dropdown 7" to="." method="_on_Dropdown_7_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/VBoxContainer/BindRow 8/Dropdown 8" to="." method="_on_Dropdown_8_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/VBoxContainer/BindRow 10/Dropdown 10" to="." method="_on_Dropdown_10_item_selected"]
+[connection signal="button_up" from="VBoxContainer/Back" to="." method="_on_Back_button_up"]

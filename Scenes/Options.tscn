@@ -1,0 +1,165 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Scenes/Options.gd" type="Script" id=1]
+[ext_resource path="res://Assets/fonts/_bitmap_font____romulus_by_pix3m-d6aokem.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scenes/Main Menu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/dialogic/Editor/Events/styles/ResourceMenuHover.tres" type="StyleBox" id=4]
+[ext_resource path="res://addons/dialogic/Editor/Events/styles/SimpleButtonNormal.tres" type="StyleBox" id=5]
+[ext_resource path="res://addons/dialogic/Editor/Events/styles/ResourceMenuPanelBackground.tres" type="StyleBox" id=6]
+
+[sub_resource type="DynamicFont" id=2]
+size = 128
+outline_size = 1
+outline_color = Color( 0.431373, 0.431373, 0.431373, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 128
+outline_size = 1
+outline_color = Color( 0.431373, 0.431373, 0.431373, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 100
+outline_size = 1
+outline_color = Color( 0.431373, 0.431373, 0.431373, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="DynamicFont" id=7]
+size = 128
+outline_size = 1
+outline_color = Color( 0.431373, 0.431373, 0.431373, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 128
+outline_size = 1
+outline_color = Color( 0.431373, 0.431373, 0.431373, 1 )
+font_data = ExtResource( 2 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+MainMenu = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 1, 1, 1, 0.0980392 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 1920.0
+margin_bottom = 1072.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+margin_right = 1920.0
+margin_bottom = 1072.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Sens" type="HBoxContainer" parent="MarginContainer/GridContainer"]
+margin_right = 1920.0
+margin_bottom = 265.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Sens" type="Label" parent="MarginContainer/GridContainer/Sens"]
+margin_right = 958.0
+margin_bottom = 265.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = SubResource( 2 )
+custom_styles/normal = ExtResource( 6 )
+text = "Sensitivity"
+align = 3
+valign = 1
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/GridContainer/Sens"]
+margin_left = 962.0
+margin_right = 1920.0
+margin_bottom = 265.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 3 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/normal = ExtResource( 6 )
+text = "40"
+align = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/GridContainer"]
+margin_top = 269.0
+margin_right = 1920.0
+margin_bottom = 534.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Cheats" type="Label" parent="MarginContainer/GridContainer/HBoxContainer"]
+margin_right = 1920.0
+margin_bottom = 265.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 6 )
+text = "Cheats"
+align = 3
+valign = 1
+
+[node name="CheckBox" type="CheckButton" parent="MarginContainer/GridContainer/HBoxContainer/Cheats"]
+margin_left = 1533.0
+margin_top = 15.0
+margin_right = 1609.0
+margin_bottom = 55.0
+rect_scale = Vector2( 5, 6 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/hover = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/GridContainer"]
+margin_top = 538.0
+margin_right = 1920.0
+margin_bottom = 803.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Keybinds" type="Button" parent="MarginContainer/GridContainer/VBoxContainer2"]
+margin_right = 1920.0
+margin_bottom = 265.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 7 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 6 )
+text = "Keybinds"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/GridContainer"]
+margin_top = 807.0
+margin_right = 1920.0
+margin_bottom = 1072.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Back" type="Button" parent="MarginContainer/GridContainer/VBoxContainer"]
+margin_right = 1920.0
+margin_bottom = 265.0
+focus_mode = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 6 )
+text = "Back"
+
+[connection signal="text_entered" from="MarginContainer/GridContainer/Sens/LineEdit" to="." method="_on_LineEdit_text_entered"]
+[connection signal="toggled" from="MarginContainer/GridContainer/HBoxContainer/Cheats/CheckBox" to="." method="_on_CheckBox_toggled"]
+[connection signal="button_up" from="MarginContainer/GridContainer/VBoxContainer2/Keybinds" to="." method="_on_Keybinds_button_up"]
+[connection signal="button_up" from="MarginContainer/GridContainer/VBoxContainer/Back" to="." method="_on_Back_button_up"]

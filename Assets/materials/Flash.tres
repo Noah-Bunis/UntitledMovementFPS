@@ -1,0 +1,12 @@
+[gd_resource type="ParticlesMaterial" load_steps=3 format=2]
+
+[sub_resource type="Curve" id=10]
+max_value = 2.0
+_data = [ Vector2( 0, 0.981818 ), 0.0, 0.0, 0, 0, Vector2( 0.256219, 1.98182 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.945454 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=11]
+curve = SubResource( 10 )
+
+[resource]
+gravity = Vector3( 0, 0, 0 )
+scale_curve = SubResource( 11 )

@@ -1,0 +1,726 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://Assets/player.tres" type="Shape" id=2]
+[ext_resource path="res://Camera.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Crosshair.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/gunref.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Cylinder.tres" type="Material" id=7]
+[ext_resource path="res://Assets/Trigger.tres" type="Material" id=8]
+[ext_resource path="res://Assets/Sounds/Revolver.wav" type="AudioStream" id=10]
+[ext_resource path="res://Scenes/Explosive_Revolver.tres" type="Material" id=15]
+[ext_resource path="res://Scenes/Revolver.tres" type="Material" id=16]
+
+[sub_resource type="CapsuleMesh" id=14]
+mid_height = 2.622
+
+[sub_resource type="SpatialMaterial" id=20]
+albedo_color = Color( 0, 0, 0, 1 )
+metallic = 1.0
+roughness = 0.2
+
+[sub_resource type="SpatialMaterial" id=31]
+emission_enabled = true
+emission = Color( 1, 1, 1, 1 )
+emission_energy = 3.59
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="SpatialMaterial" id=32]
+emission_enabled = true
+emission = Color( 1, 1, 1, 1 )
+emission_energy = 2.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="CylinderMesh" id=13]
+material = ExtResource( 7 )
+top_radius = 0.08
+bottom_radius = 0.08
+height = 0.01
+
+[sub_resource type="SpatialMaterial" id=19]
+albedo_color = Color( 1, 0.937255, 0.490196, 1 )
+emission_enabled = true
+emission = Color( 1, 0.458824, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+distance_fade_mode = 1
+distance_fade_min_distance = 0.0
+distance_fade_max_distance = 10.0
+
+[sub_resource type="PlaneMesh" id=18]
+material = SubResource( 19 )
+size = Vector2( 0.1, 50 )
+center_offset = Vector3( 0.15, -0.01, -25 )
+
+[sub_resource type="Animation" id=24]
+resource_name = "Death"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Head/Camera:fov")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 4 ),
+"update": 0,
+"values": [ 80.0, 60.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Head:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 90 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player_Collision:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 2.24955, 0.239604 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Player_Body:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 2.27381, 0.248572 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Player_Body:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 90, 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Player_Body:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.5 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Player_Collision:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Head:translation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 3.5, -0.659 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Head/Camera:fov")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 80.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Head:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Slide"
+length = 0.0166667
+step = 0.0166667
+tracks/0/type = "transform"
+tracks/0/path = NodePath("Player_Collision")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray(  )
+tracks/1/type = "value"
+tracks/1/path = NodePath("Player_Collision:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0166667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1, 1, 0.8 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Player_Body:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.0166667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1, 1, 0.8 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Head:translation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.0166667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 2.147, -0.659 ), Vector3( 0, 2.147, -0.659 ) ]
+}
+
+[sub_resource type="Animation" id=30]
+resource_name = "Fire_Explosive_Revolver"
+length = 0.500001
+step = 0.0166667
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "fire"
+} ]
+}
+tracks/1/type = "transform"
+tracks/1/path = NodePath("Head/Camera/Hand/Explosive_Revolver")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = PoolRealArray(  )
+tracks/2/type = "value"
+tracks/2/path = NodePath("Head/Camera/Hand/Explosive_Revolver:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.051, 0.283333, 0.433333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 65, 0, 0 ), Vector3( -20, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Head/Camera/RevolverBullet:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.0333333 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Head/Camera/Hand/Explosive_Revolver/Cylinder:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.124733, -0.124733, -0.124733 ), Vector3( -0.125, 0, -0.125 ), Vector3( -0.125, 0, -0.125 ), Vector3( -0.125, -0.125, -0.125 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Head/Camera/Hand/Explosive_Revolver/Cylinder:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.05, 0.2 ],
+"method": "hitstop"
+} ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Head/Camera/Hand/Explosive_Revolver/Cylinder:material/0:albedo_color")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.4, 0, 0, 1 ), Color( 4, 0, 0, 1 ), Color( 0.4, 0, 0, 1 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Head/Camera/RevolverBullet:draw_pass_1:material:emission_energy")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.0333333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 16.0 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Head/Camera/Hand/Explosive_Revolver/Cylinder:material/0:emission_energy")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.0333334, 0.433333 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 16.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "Fire_Revolver"
+length = 0.4
+step = 0.0166667
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "fire"
+} ]
+}
+tracks/1/type = "transform"
+tracks/1/path = NodePath("Head/Camera/Hand/Revolver")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = PoolRealArray(  )
+tracks/2/type = "value"
+tracks/2/path = NodePath("Head/Camera/Hand/Revolver:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.051, 0.233498 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 45, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Head/Camera/Hand/Revolver/Cylinder:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/keys = {
+"times": PoolRealArray( 0.0666667, 0.166667, 0.233333, 0.366667, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -90, 0, 0 ), Vector3( -90, -180, 0 ), Vector3( -90, -270, 0 ), Vector3( -90, -380, 0 ), Vector3( -90, -360, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Head/Camera/Hand/Revolver/Shell:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Head/Camera/RevolverBullet:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.0166667 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Head/Camera/Hand/Revolver/Cylinder:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.124733, -0.124733, -0.124733 ), Vector3( -0.125, 0, -0.125 ), Vector3( -0.125, 0, -0.125 ), Vector3( -0.125, -0.125, -0.125 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Head/Camera/Hand/Revolver/Cylinder:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Head/Camera/Hand/Revolver/Shell:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Revolver SFX:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Head/Camera/Hand/Explosive_Revolver/Cylinder:material/0:albedo_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.4, 0, 0, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Head/Camera/RevolverBullet:draw_pass_1:material:emission_energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Head/Camera/Hand/Explosive_Revolver/Cylinder:material/0:emission_energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="BoxShape" id=28]
+extents = Vector3( 0.3, 2, 0.664272 )
+
+[sub_resource type="BoxShape" id=29]
+extents = Vector3( 0.3, 2, 0.664 )
+
+[sub_resource type="Animation" id=27]
+resource_name = "RESET"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Head/Camera:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=25]
+resource_name = "tilt_l"
+length = 0.0500001
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Head/Camera:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, -12 ) ]
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "tilt_r"
+length = 0.0500001
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Head/Camera:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 12 ) ]
+}
+
+[node name="Player" type="KinematicBody"]
+script = ExtResource( 1 )
+
+[node name="Player_Body" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2.27381, 0.248572 )
+layers = 524288
+mesh = SubResource( 14 )
+skeleton = NodePath("")
+
+[node name="Player_Collision" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2.24955, 0.239604 )
+shape = ExtResource( 2 )
+
+[node name="Head" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -0.659 )
+
+[node name="Camera" type="Camera" parent="Head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8325, -0.931905 )
+keep_aspect = 0
+cull_mask = 524287
+current = true
+fov = 80.0
+far = 300.0
+script = ExtResource( 3 )
+
+[node name="RayCast" type="RayCast" parent="Head/Camera"]
+enabled = true
+cast_to = Vector3( 0, 0, -500 )
+collide_with_areas = true
+
+[node name="Hand" type="Spatial" parent="Head/Camera"]
+transform = Transform( 0.999214, 0, -0.0396435, 0, 1, 0, 0.0396435, 0, 0.999214, 0.374, -0.685, -0.762 )
+
+[node name="Revolver" parent="Head/Camera/Hand" instance=ExtResource( 5 )]
+visible = false
+
+[node name="Empty" parent="Head/Camera/Hand/Revolver" index="0"]
+transform = Transform( -3.53903e-08, 1, -4.47035e-08, -5.36442e-07, -4.28408e-08, -1, -1, -7.07805e-08, 5.06639e-07, 0.173486, 0.163068, 0.186686 )
+
+[node name="Cube" parent="Head/Camera/Hand/Revolver" index="1"]
+use_in_baked_light = true
+material/0 = SubResource( 20 )
+
+[node name="Cube001" parent="Head/Camera/Hand/Revolver/Cube" index="0"]
+use_in_baked_light = true
+material/0 = ExtResource( 8 )
+
+[node name="Cylinder" parent="Head/Camera/Hand/Revolver" index="2"]
+transform = Transform( -0.124733, -3.79545e-07, -1.65904e-14, 0, 5.45225e-09, -0.124733, -3.79545e-07, 0.124733, 5.45225e-09, 0.159477, 0.347775, 0 )
+material_override = SubResource( 31 )
+material_overlay = SubResource( 32 )
+use_in_baked_light = true
+material/0 = ExtResource( 7 )
+
+[node name="Shell" type="CPUParticles" parent="Head/Camera/Hand/Revolver"]
+transform = Transform( 0.650697, 0.735988, -0.186854, 0.208408, 0.0635274, 0.975976, 0.730178, -0.674006, -0.11205, 0.133396, 0.304536, -0.0524004 )
+emitting = false
+amount = 1
+lifetime = 0.2
+one_shot = true
+mesh = SubResource( 13 )
+direction = Vector3( 2, 2, 2 )
+spread = 12.0
+gravity = Vector3( 0, 0, -15 )
+initial_velocity = 6.0
+damping = 15.0
+
+[node name="Explosive_Revolver" parent="Head/Camera/Hand" instance=ExtResource( 5 )]
+visible = false
+
+[node name="Empty" parent="Head/Camera/Hand/Explosive_Revolver" index="0"]
+transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 1.04125, 0, 0 )
+
+[node name="Cube" parent="Head/Camera/Hand/Explosive_Revolver" index="1"]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )
+material/0 = ExtResource( 16 )
+
+[node name="Cube001" parent="Head/Camera/Hand/Explosive_Revolver/Cube" index="0"]
+material/0 = ExtResource( 8 )
+
+[node name="Cylinder" parent="Head/Camera/Hand/Explosive_Revolver" index="2"]
+transform = Transform( -0.124733, 0, 0, 0, 5.45225e-09, -0.124733, 0, 0.124733, 5.45225e-09, 0.159477, 0.347775, 0 )
+material/0 = ExtResource( 15 )
+
+[node name="Crosshair" type="TextureRect" parent="Head/Camera"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+texture = ExtResource( 4 )
+
+[node name="Reach" type="RayCast" parent="Head/Camera"]
+enabled = true
+cast_to = Vector3( 0, 0, -5 )
+
+[node name="RevolverBullet" type="CPUParticles" parent="Head/Camera"]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.553778, -0.238999, -1.99835 )
+emitting = false
+amount = 1
+lifetime = 0.02
+one_shot = true
+mesh = SubResource( 18 )
+direction = Vector3( 0, 0, -2 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 45.0
+
+[node name="Slide_Check" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0362152, 0 )
+enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Death = SubResource( 24 )
+anims/RESET = SubResource( 5 )
+anims/Slide = SubResource( 6 )
+
+[node name="HandAnimation" type="AnimationPlayer" parent="."]
+autoplay = "RESET"
+anims/Fire_Explosive_Revolver = SubResource( 30 )
+anims/Fire_Revolver = SubResource( 15 )
+anims/RESET = SubResource( 16 )
+
+[node name="Left_Wall" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Left_Wall"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0.2 )
+shape = SubResource( 28 )
+
+[node name="Right_Wall" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Right_Wall"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0.2 )
+shape = SubResource( 29 )
+
+[node name="CameraAnimation" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 27 )
+anims/tilt_l = SubResource( 25 )
+anims/tilt_r = SubResource( 26 )
+
+[node name="Revolver SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+
+[connection signal="body_entered" from="Left_Wall" to="." method="_on_Left_Wall_body_entered"]
+[connection signal="body_entered" from="Right_Wall" to="." method="_on_Right_Wall_body_entered"]
+
+[editable path="Head/Camera/Hand/Revolver"]
+[editable path="Head/Camera/Hand/Explosive_Revolver"]
