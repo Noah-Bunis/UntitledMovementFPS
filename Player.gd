@@ -41,7 +41,6 @@ onready var slide_check = $Slide_Check
 #SHOOTING VARS
 var target
 var damage = 10
-var explosion_hit = false
 var bullet_force = 45
 onready var anim_player = $AnimationPlayer
 onready var hand_anim = $HandAnimation
@@ -51,15 +50,13 @@ onready var pickup = $Head/Camera/Reach
 onready var left_wall = $Left_Wall
 onready var right_wall = $Right_Wall
 onready var b_decal = preload("res://Scenes/BulletDecal.tscn")
-onready var Explosion = preload("res://Scenes/ExplosionRadius.tscn")
 onready var HUD = $"/root/Hud"
 onready var HUD_Animation = $"/root/Hud/HUD Effects"
 onready var timer = $"/root/Hud/Display/Timer"
 #INVENTORY VARS
 var e_index = 0
-var equipments = ["","Revolver","Explosive Revolver"]
+var equipments = ["","Revolver"]
 onready var Revolver = $Head/Camera/Hand/Revolver
-onready var Explosive_Revolver = $Head/Camera/Hand/Explosive_Revolver
 onready var Revolver_SFX = $"Revolver SFX"
 var equipped = ""
 var glass_count = 5
@@ -75,11 +72,6 @@ func display_weapon():
 		hide_all()
 		Revolver.visible = true
 		for i in Revolver.get_children():
-			i.visible = true
-	elif equipped == "Explosive Revolver":
-		hide_all()
-		Explosive_Revolver.visible = true
-		for i in Explosive_Revolver.get_children():
 			i.visible = true
 		
 func _ready():
@@ -116,9 +108,6 @@ func fire_animation():
 		if equipped == "Revolver" and hand_anim.get_current_animation() != "Fire_Revolver":
 			Revolver_SFX.play()
 			hand_anim.play("Fire_Revolver")
-		elif equipped == "Explosive Revolver" and hand_anim.get_current_animation() != "Fire_Explosive_Revolver":
-			Revolver_SFX.play()
-			hand_anim.play("Fire_Explosive_Revolver")
 			
 func fire():
 	if raycast.is_colliding():
@@ -127,10 +116,6 @@ func fire():
 		get_tree().root.add_child(b)
 		b.global_transform.origin = raycast.get_collision_point()
 		b.look_at(raycast.get_collision_point() + raycast.get_collision_normal(), Vector3.UP)
-		if equipped == "Explosive Revolver":
-			var e = Explosion.instance()
-			get_tree().root.add_child(e)
-			e.global_transform.origin = raycast.get_collision_point()
 		target = raycast.get_collider()
 		if target.is_in_group("Entity"):
 			target.knockback(-raycast.get_collision_normal()*bullet_force)
@@ -146,14 +131,6 @@ func pickup():
 			equipped = "Revolver"
 			$"/root/Global".register_item(equipped)
 			target.queue_free()
-		elif target.is_in_group("Explosive Revolver"):
-			equipped = "Explosive Revolver"
-			$"/root/Global".register_item(equipped)
-			target.queue_free()
-			if $"/root/Global".weapon_tutorial == true:
-				var dialog = Dialogic.start("Explosive Revolver")
-				add_child(dialog)
-				$"/root/Global".weapon_tutorial = false
 		elif target.is_in_group("Gramophone"):
 			target.queue_free()
 		elif target.is_in_group("NoWallRun"):
@@ -165,9 +142,7 @@ func hitstop(timeScale, duration):
 	Engine.time_scale = 1.0
 
 func camera_fov():
-	if explosion_hit:
-		target_fov = 95
-	elif wall_running:
+	if wall_running:
 		target_fov = 86
 	elif sliding:
 		target_fov = 81
@@ -287,14 +262,6 @@ func wall_jump():
 	direction = wall_normal.normal * speed/2
 	yield(get_tree().create_timer(0.1), "timeout")
 	wall_kick = false
-
-func take_explosion(force,ray):
-	explosion_hit = true
-	snap = Vector3.ZERO
-	direction.y = ray.get_cast_to().y * force
-	yield(get_tree().create_timer(0.2), "timeout")
-	explosion_hit = false
-	
 	
 func _physics_process(delta):
 	#get keyboard input
@@ -302,8 +269,6 @@ func _physics_process(delta):
 	f_input = Input.get_action_strength("move_backward") - Input.get_action_strength("move_forward")
 	h_input = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	if wall_kick == true:
-		pass
-	elif explosion_hit == true:
 		pass
 	else:
 		direction = Vector3(h_input, 0, f_input).rotated(Vector3.UP, h_rot).normalized()
@@ -347,7 +312,7 @@ func _physics_process(delta):
 		wall_jumps = 1
 		cam_anim.queue("RESET")
 	else:
-		snap = Vector3.DOWN
+		snap = Vector3.ZERO
 		accel = ACCEL_AIR
 		gravity_vec += Vector3.DOWN * gravity * delta
 		falling = true

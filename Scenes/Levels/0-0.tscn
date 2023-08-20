@@ -1,7 +1,6 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Explosive_Revolver.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Glass.tscn" type="PackedScene" id=3]
 [ext_resource path="res://default_env.tres" type="Environment" id=4]
 [ext_resource path="res://Assets/floor.tres" type="Material" id=7]
@@ -218,9 +217,6 @@ material/0 = SubResource( 7 )
 [node name="CollisionShape3" type="CollisionShape" parent="Section4"]
 transform = Transform( 80, 0, 0, 0, -8.74228e-08, -7, 0, 2, -3.0598e-07, 78, 4.8, -21 )
 shape = SubResource( 26 )
-
-[node name="Revolver" parent="Section4" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.3, 3.2, -29.4 )
 
 [node name="Glass" parent="Section4" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 5, 0.654114, 6.4, -29.3 )

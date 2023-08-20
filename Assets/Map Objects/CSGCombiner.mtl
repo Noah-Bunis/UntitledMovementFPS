@@ -1,0 +1,12 @@
+newmtl [SpatialMaterial:26366]
+Kd 1 1 1
+Ke 0 0 0
+d 1
+newmtl [SpatialMaterial:484885]
+Kd 0.498039 0.211765 0.211765
+Ke 0 0 0
+d 1
+newmtl [SpatialMaterial:26372]
+Kd 1 1 1
+Ke 1 0.588235 0
+d 1
