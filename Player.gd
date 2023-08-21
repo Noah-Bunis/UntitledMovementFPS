@@ -333,7 +333,7 @@ func _physics_process(delta):
 
 	if get_translation().y <-20 and not dying:
 		death()
-	#make it move
+
 	velocity = velocity.linear_interpolate(direction * speed, accel * delta)
 	movement = velocity + gravity_vec
 	if abs(movement.x) > DEFAULT_SPEED or abs(movement.z) > DEFAULT_SPEED:

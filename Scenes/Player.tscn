@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/player.tres" type="Shape" id=2]
@@ -52,6 +52,9 @@ distance_fade_max_distance = 10.0
 material = SubResource( 19 )
 size = Vector2( 0.1, 50 )
 center_offset = Vector3( 0.15, -0.01, -25 )
+
+[sub_resource type="CubeMesh" id=33]
+size = Vector3( 1, 1, 8 )
 
 [sub_resource type="Animation" id=24]
 resource_name = "Death"
@@ -410,12 +413,6 @@ tracks/2/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="BoxShape" id=28]
-extents = Vector3( 0.3, 2, 0.664272 )
-
-[sub_resource type="BoxShape" id=29]
-extents = Vector3( 0.3, 2, 0.664 )
-
 [sub_resource type="Animation" id=27]
 resource_name = "RESET"
 length = 0.1
@@ -464,6 +461,92 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 12 ) ]
+}
+
+[sub_resource type="BoxShape" id=28]
+extents = Vector3( 0.3, 2, 0.664272 )
+
+[sub_resource type="BoxShape" id=29]
+extents = Vector3( 0.3, 2, 0.664 )
+
+[sub_resource type="Animation" id=34]
+resource_name = "Kick"
+length = 0.4
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Head/Camera/Leg/MeshInstance:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Head/Camera/Leg/MeshInstance:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.15, 0.2, 0.216667, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -1.3, 3 ), Vector3( 0, -1.3, 0.333333 ), Vector3( 0, -1.3, -0.5 ), Vector3( 0, -1.3, -1.44444 ), Vector3( 0, -1.3, -5 ), Vector3( 0, -1.3, -4 ), Vector3( 0, -1.3, -4 ), Vector3( 0, -1.3, 3 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Head/Camera/Leg/MeshInstance:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.15, 0.2, 0.216667, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.666667, 16.6667 ), Vector3( 0, 0.667, 18 ), Vector3( 0, 2, 50 ), Vector3( 0, 2, 35 ), Vector3( 0, 2, 25 ), Vector3( 0, 2, 0 ) ]
+}
+
+[sub_resource type="Animation" id=35]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Head/Camera/Leg/MeshInstance:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Head/Camera/Leg/MeshInstance:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.5, -1.3, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Head/Camera/Leg/MeshInstance:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 2, 8 ) ]
 }
 
 [node name="Player" type="KinematicBody"]
@@ -560,6 +643,13 @@ spread = 0.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 45.0
 
+[node name="Leg" type="Spatial" parent="Head/Camera"]
+
+[node name="MeshInstance" type="MeshInstance" parent="Head/Camera/Leg"]
+transform = Transform( 0.989665, -0.139088, 0.0348995, 0.139173, 0.990268, 0, -0.0345599, 0.00485707, 0.999391, 0.5, -1.3, 0 )
+visible = false
+mesh = SubResource( 33 )
+
 [node name="Slide_Check" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0362152, 0 )
 enabled = true
@@ -575,6 +665,11 @@ anims/Fire_Explosive_Revolver = SubResource( 30 )
 anims/Fire_Revolver = SubResource( 15 )
 anims/RESET = SubResource( 16 )
 
+[node name="CameraAnimation" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 27 )
+anims/tilt_l = SubResource( 25 )
+anims/tilt_r = SubResource( 26 )
+
 [node name="Left_Wall" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 0 )
 
@@ -589,13 +684,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0.2 )
 shape = SubResource( 29 )
 
-[node name="CameraAnimation" type="AnimationPlayer" parent="."]
-anims/RESET = SubResource( 27 )
-anims/tilt_l = SubResource( 25 )
-anims/tilt_r = SubResource( 26 )
-
 [node name="Revolver SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
+
+[node name="LegAnimation" type="AnimationPlayer" parent="."]
+anims/Kick = SubResource( 34 )
+anims/RESET = SubResource( 35 )
 
 [connection signal="body_entered" from="Left_Wall" to="." method="_on_Left_Wall_body_entered"]
 [connection signal="body_entered" from="Right_Wall" to="." method="_on_Right_Wall_body_entered"]
